@@ -1,0 +1,11 @@
+## Interface: 90105
+## Title: |cff1784d1TCR|r
+## Notes: Track Covenant Renown for your character
+
+## Author: Gaver
+## SavedVariables: TCR
+## Version: 1.0.0
+
+## OptionalDeps: ElvUI, Tukui, ExRT, MRT, AddOnSkins, RaiderIO 
+
+TCR.lua
