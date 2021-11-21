@@ -57,6 +57,14 @@ Event(
         TCR[name .. '-' .. realm][CovenantID] = level
     end
 )
+Event(
+    'COVENANT_SANCTUM_RENOWN_LEVEL_CHANGED',
+    function()
+        level = C_CovenantSanctumUI.GetRenownLevel()
+        CovenantID = C_Covenants.GetActiveCovenantID()  
+        TCR[name .. '-' .. realm][CovenantID] = level
+    end
+)
 GameTooltip:HookScript(
     'OnTooltipSetUnit',
     function(self)
