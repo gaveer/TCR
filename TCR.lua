@@ -61,7 +61,7 @@ Event(
     end
 )
 Event(
-    'ZONE_CHANGED',
+    'COVENANT_SANCTUM_RENOWN_LEVEL_CHANGED',
     function()
         C_Timer.After(2, function() end )
         level = C_CovenantSanctumUI.GetRenownLevel()
