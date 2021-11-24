@@ -1,3 +1,5 @@
+if UnitLevel("player") <= 48 then return end
+--[and not UnitLevel("player") >= 60]]--
 local addon = ...
 local function Event(event, handler)
     if _G.event == nil then
@@ -52,19 +54,22 @@ Event(
 Event(
     'COVENANT_CHOSEN',
     function()
+        C_Timer.After(2, function() end )
         level = C_CovenantSanctumUI.GetRenownLevel()
         CovenantID = C_Covenants.GetActiveCovenantID()
         TCR[name .. '-' .. realm][CovenantID] = level
     end
 )
 Event(
-    'COVENANT_SANCTUM_RENOWN_LEVEL_CHANGED',
+    'ZONE_CHANGED',
     function()
+        C_Timer.After(2, function() end )
         level = C_CovenantSanctumUI.GetRenownLevel()
-        CovenantID = C_Covenants.GetActiveCovenantID()  
+        CovenantID = C_Covenants.GetActiveCovenantID()
         TCR[name .. '-' .. realm][CovenantID] = level
     end
 )
+
 GameTooltip:HookScript(
     'OnTooltipSetUnit',
     function(self)
