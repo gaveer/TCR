@@ -76,10 +76,10 @@ GameTooltip:HookScript(
         local unit = select(2, self:GetUnit())
         if tostring(unit) =="player" then
             
-            GameTooltip:AddDoubleLine("|T3257748:0|t "..COVENANT_COLORS.Kyrian:WrapTextInColorCode("Kyrian"), TCR[name .. '-' .. realm][1])
-            GameTooltip:AddDoubleLine("|T3257751:0|t "..COVENANT_COLORS.Venthyr:WrapTextInColorCode("Venthyr"), TCR[name .. '-' .. realm][2])
-            GameTooltip:AddDoubleLine("|T3257750:0|t "..COVENANT_COLORS.NightFae:WrapTextInColorCode("Night Fae"), TCR[name .. '-' .. realm][3])
-            GameTooltip:AddDoubleLine("|T3257749:0|t "..COVENANT_COLORS.Necrolord:WrapTextInColorCode("Necrolord"), TCR[name .. '-' .. realm][4])
+            GameTooltip:AddDoubleLine("|A:sanctumupgrades-kyrian-32x32:16:16|a"..COVENANT_COLORS.Kyrian:WrapTextInColorCode("Kyrian"), TCR[name .. '-' .. realm][1])
+            GameTooltip:AddDoubleLine("|A:sanctumupgrades-venthyr-32x32:16:16|a"..COVENANT_COLORS.Venthyr:WrapTextInColorCode("Venthyr"), TCR[name .. '-' .. realm][2])
+            GameTooltip:AddDoubleLine("|A:sanctumupgrades-nightfae-32x32:16:16|a "..COVENANT_COLORS.NightFae:WrapTextInColorCode("Night Fae"), TCR[name .. '-' .. realm][3])
+            GameTooltip:AddDoubleLine("|A:sanctumupgrades-necrolord-32x32:16:16|a "..COVENANT_COLORS.Necrolord:WrapTextInColorCode("Necrolord"), TCR[name .. '-' .. realm][4])
         end
     end
 )
