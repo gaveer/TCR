@@ -54,20 +54,22 @@ Event(
 Event(
     'COVENANT_CHOSEN',
     function()
-        C_Timer.After(2, function() end )
+        C_Timer.After(3, function()
         level = C_CovenantSanctumUI.GetRenownLevel()
         CovenantID = C_Covenants.GetActiveCovenantID()
         TCR[name .. '-' .. realm][CovenantID] = level
-    end
+    end )
+end
 )
 Event(
     'COVENANT_SANCTUM_RENOWN_LEVEL_CHANGED',
     function()
-        C_Timer.After(2, function() end )
+        C_Timer.After(1, function()
         level = C_CovenantSanctumUI.GetRenownLevel()
         CovenantID = C_Covenants.GetActiveCovenantID()
         TCR[name .. '-' .. realm][CovenantID] = level
-    end
+    end )
+end
 )
 
 GameTooltip:HookScript(

@@ -4,8 +4,8 @@
 
 ## Author: Gaver
 ## SavedVariables: TCR
-## Version: 1.7.0
-
+## Version: 1.8.0
+## X-Curse-Project-ID: 548750
 ## OptionalDeps: ElvUI, Tukui, ExRT, MRT, AddOnSkins, RaiderIO 
 
 TCR.lua
