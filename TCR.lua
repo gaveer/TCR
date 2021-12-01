@@ -64,7 +64,7 @@ end
 Event(
     'COVENANT_SANCTUM_RENOWN_LEVEL_CHANGED',
     function()
-        C_Timer.After(1, function()
+        C_Timer.After(5, function()
         level = C_CovenantSanctumUI.GetRenownLevel()
         CovenantID = C_Covenants.GetActiveCovenantID()
         TCR[name .. '-' .. realm][CovenantID] = level
