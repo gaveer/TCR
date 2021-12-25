@@ -1,6 +1,5 @@
-local PlayerLevel = UnitLevel("player")
-if (PlayerLevel <= 48) then return end
---if (PlayerLevel <= 49) or (C_QuestLog.IsQuestFlaggedCompleted(60545) == false) then
+if UnitLevel("player") <= 48 then return end
+--[and not UnitLevel("player") >= 60]]--
 local addon = ...
 local function Event(event, handler)
     if _G.event == nil then
