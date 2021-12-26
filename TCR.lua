@@ -21,6 +21,7 @@ local function Event(event, handler)
 end
 local level,CovenantID
 local name, realm
+local anima
 Event(
     'ADDON_LOADED',
     function(name)
@@ -35,10 +36,11 @@ Event(
             TCR = {}
         end
         name, realm = UnitFullName('player'), GetNormalizedRealmName()
+        anima = C_CurrencyInfo.GetCurrencyInfo(1813).quantity
         if not TCR[name .. '-' .. realm] then
             TCR[name .. '-' .. realm]={}
             for i=1,4 do
-                TCR[name .. '-' .. realm][i]=0
+                TCR[name .. '-' .. realm][i][anima]=0
             end
         end
     end
@@ -47,8 +49,9 @@ Event(
     'PLAYER_ENTERING_WORLD',
     function()
         level = C_CovenantSanctumUI.GetRenownLevel()
-        CovenantID = C_Covenants.GetActiveCovenantID()  
-        name, realm = UnitFullName('player')     
+        CovenantID = C_Covenants.GetActiveCovenantID()
+        name, realm = UnitFullName('player')
+        anima = C_CurrencyInfo.GetCurrencyInfo(1813).quantity
         TCR[name .. '-' .. realm][CovenantID] = level
     end
 )
@@ -58,7 +61,8 @@ Event(
         C_Timer.After(3, function()
         level = C_CovenantSanctumUI.GetRenownLevel()
         CovenantID = C_Covenants.GetActiveCovenantID()
-        TCR[name .. '-' .. realm][CovenantID] = level
+        anima = C_CurrencyInfo.GetCurrencyInfo(1813).quantity
+        TCR[name .. '-' .. realm][CovenantID][anima] = level
     end )
 end
 )
@@ -68,9 +72,20 @@ Event(
         C_Timer.After(5, function()
         level = C_CovenantSanctumUI.GetRenownLevel()
         CovenantID = C_Covenants.GetActiveCovenantID()
-        TCR[name .. '-' .. realm][CovenantID] = level
+        anima = C_CurrencyInfo.GetCurrencyInfo(1813).quantity
+        TCR[name .. '-' .. realm][CovenantID][anima] = level
     end )
 end
+)
+Event(
+    'CURRENCY_DISPLAY_UPDATE',
+    function()
+        name, realm = UnitFullName('player')
+        level = C_CovenantSanctumUI.GetRenownLevel()
+        CovenantID = C_Covenants.GetActiveCovenantID()
+        anima = C_CurrencyInfo.GetCurrencyInfo(1813).quantity
+        TCR[name .. '-' .. realm][CovenantID] = level
+    end
 )
 
 GameTooltip:HookScript(
@@ -78,7 +93,7 @@ GameTooltip:HookScript(
     function(self)
         local unit = select(2, self:GetUnit())
         if tostring(unit) =="player" then
-            
+
             GameTooltip:AddDoubleLine("|A:sanctumupgrades-kyrian-32x32:16:16|a"..COVENANT_COLORS.Kyrian:WrapTextInColorCode("Kyrian"), TCR[name .. '-' .. realm][1])
             GameTooltip:AddDoubleLine("|A:sanctumupgrades-venthyr-32x32:16:16|a"..COVENANT_COLORS.Venthyr:WrapTextInColorCode("Venthyr"), TCR[name .. '-' .. realm][2])
             GameTooltip:AddDoubleLine("|A:sanctumupgrades-nightfae-32x32:16:16|a "..COVENANT_COLORS.NightFae:WrapTextInColorCode("Night Fae"), TCR[name .. '-' .. realm][3])
