@@ -1,5 +1,4 @@
-if UnitLevel("player") <= 48 then return end
---[and not UnitLevel("player") >= 60]]--
+if UnitLevel("player") <= 48 or (C_QuestLog.IsQuestFlaggedCompleted(60545) == false) then return end
 local addon = ...
 local function Event(event, handler)
     if _G.event == nil then
@@ -72,8 +71,7 @@ Event(
 end
 )
 
-GameTooltip:HookScript(
-    'OnTooltipSetUnit',
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit,
     function(self)
         local unit = select(2, self:GetUnit())
         if tostring(unit) =="player" then
